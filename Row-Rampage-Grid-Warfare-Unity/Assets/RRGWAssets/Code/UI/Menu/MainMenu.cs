@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,5 +12,17 @@ public class MainMenu : MenuHandler
         {
             button.interactable = enable;
         }
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        if (Application.isPlaying)
+        {
+            EditorApplication.isPlaying = false;
+        }
+#endif
+
+        Application.Quit();
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MenuHandler : MonoBehaviour
+public abstract class MenuHandler : MonoBehaviour
 {
     [SerializeField] private GameObject[] panels;
 
