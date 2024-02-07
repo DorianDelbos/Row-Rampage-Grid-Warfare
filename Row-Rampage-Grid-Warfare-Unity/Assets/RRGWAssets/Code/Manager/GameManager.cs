@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Range(1, 10)] public int maxDepth = 10;
 
     public System.Action<Board> OnDisplayUpdate;
+    public System.Action<Board.State> OnWin;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         root = new Board();
+
+        OnWin += state => { Debug.Log(state + " win !"); };
 
         PlayAI();
     }
@@ -72,6 +75,10 @@ public class GameManager : MonoBehaviour
 
         root.DropPiece(column, Board.State.P2);
 
+        OnDisplayUpdate?.Invoke(root);
+        if (CheckWin())
+            return;
+
         PlayAI();
     }
 
@@ -89,5 +96,18 @@ public class GameManager : MonoBehaviour
             .First();
 
         OnDisplayUpdate?.Invoke(root);
+        if (CheckWin())
+            return;
+    }
+
+    private bool CheckWin()
+    {
+        Board.State state = root.IsAligned();
+        if (root.IsBoardFull() || state != Board.State.Empty)
+        {
+            OnWin?.Invoke(state);
+            return true;
+        }
+        return false;
     }
 }

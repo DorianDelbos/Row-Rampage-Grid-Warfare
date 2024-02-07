@@ -7,7 +7,7 @@ public class RenderingGame3D : MonoBehaviour
     public GameObject tokenRedPrefab;
     public GameObject tokenYellowPrefab;
 
-    private void Start()
+    private void Awake()
     {
         GameManager.instance.OnDisplayUpdate += UpdateRenderer;
     }

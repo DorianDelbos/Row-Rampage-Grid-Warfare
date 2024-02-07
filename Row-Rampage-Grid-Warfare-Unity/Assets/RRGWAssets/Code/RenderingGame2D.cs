@@ -6,7 +6,7 @@ public class RenderingGame2D : MonoBehaviour
 {
     public Transform buttonList;
 
-    private void Start()
+    private void Awake()
     {
         GameManager.instance.OnDisplayUpdate += UpdateUI;
     }
@@ -17,16 +17,18 @@ public class RenderingGame2D : MonoBehaviour
         {
             for (int j = 0; j < board.Columns; j++)
             {
+                Image image = buttonList.GetChild(i * board.Columns + j).GetComponent<Image>();
+
                 switch (board[i, j])
                 {
                     case Board.State.Empty:
-                        buttonList.Find("Button (" + (i * board.Columns + j) + ")").GetComponent<Image>().color = Color.white;
+                        image.color = Color.white;
                         break;
                     case Board.State.P1:
-                        buttonList.Find("Button (" + (i * board.Columns + j) + ")").GetComponent<Image>().color = Color.red;
+                        image.color = Color.red;
                         break;
                     case Board.State.P2:
-                        buttonList.Find("Button (" + (i * board.Columns + j) + ")").GetComponent<Image>().color = Color.yellow;
+                        image.color = Color.yellow;
                         break;
                     default:
                         break;
