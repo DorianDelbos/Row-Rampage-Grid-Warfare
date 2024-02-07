@@ -6,6 +6,11 @@ public class MainMenu : MenuHandler
 {
     [SerializeField] private Button[] buttonToDisable;
 
+    public void StartTraining()
+    {
+        SceneSystem.instance.LoadScene("ChoiceCharacter");
+    }
+
     public void SetActiveButton(bool enable)
     {
         foreach (var button in buttonToDisable)
