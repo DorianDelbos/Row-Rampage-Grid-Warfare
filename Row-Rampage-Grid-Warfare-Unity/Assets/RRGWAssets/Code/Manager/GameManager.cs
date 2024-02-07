@@ -5,12 +5,28 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     Board root;
 
     int countNode = 1;
     int countLeaf = 0;
 
-    int maxDepth = 10;
+    [Range(1, 10)] public int maxDepth = 10;
+
+    public System.Action<Board> OnDisplayUpdate;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -72,31 +88,6 @@ public class GameManager : MonoBehaviour
             .OrderBy(_ => Random.Range(0, int.MaxValue))
             .First();
 
-        UpdateUI();
-    }
-
-    public Transform buttonList;
-    void UpdateUI()
-    {
-        for (int i = 0; i < root.Rows; i++)
-        {
-            for (int j = 0; j < root.Columns; j++)
-            {
-                switch (root[i, j])
-                {
-                    case Board.State.Empty:
-                        buttonList.Find("Button (" + (i * root.Columns + j) + ")").GetComponent<Image>().color = Color.white;
-                        break;
-                    case Board.State.P1:
-                        buttonList.Find("Button (" + (i * root.Columns + j) + ")").GetComponent<Image>().color = Color.red;
-                        break;
-                    case Board.State.P2:
-                        buttonList.Find("Button (" + (i * root.Columns + j) + ")").GetComponent<Image>().color = Color.yellow;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        OnDisplayUpdate?.Invoke(root);
     }
 }
