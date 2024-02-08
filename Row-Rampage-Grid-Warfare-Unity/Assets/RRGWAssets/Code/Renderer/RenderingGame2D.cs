@@ -18,23 +18,24 @@ public class RenderingGame2D : MonoBehaviour
         {
             for (int j = 0; j < Board.COLS; j++)
             {
-                Image image = buttonList.GetChild(i * Board.COLS + j).GetComponent<Image>();
-
-                switch (board[i, j])
-                {
-                    case Board.State.Empty:
-                        image.color = Color.white;
-                        break;
-                    case Board.State.P1:
-                        image.color = Color.blue;
-                        break;
-                    case Board.State.P2:
-                        image.color = Color.red;
-                        break;
-                    default:
-                        break;
-                }
+                InstantiateToken(board[i, j], new Vector2Int(i, j));
             }
+        }
+    }
+
+    private void InstantiateToken(Board.State state, Vector2Int position)
+    {
+        RawImage image = buttonList.GetChild(position.x * Board.COLS + position.y).GetComponent<RawImage>();
+
+        if (state == Board.State.P1)
+        {
+            image.color = Color.blue;
+            image.texture = GameManager.instance.player1.token.texture;
+        }
+        else if (state == Board.State.P2)
+        {
+            image.color = Color.red;
+            image.texture = GameManager.instance.player2.token.texture;
         }
     }
 }
