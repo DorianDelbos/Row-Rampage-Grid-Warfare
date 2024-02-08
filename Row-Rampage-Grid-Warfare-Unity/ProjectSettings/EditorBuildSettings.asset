@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RRGWAssets/Levels/Scenes/UI/ChoiceCharacter.unity
     guid: 16ce2d8342bf8c347b7e556e165c0878
+  - enabled: 1
+    path: Assets/RRGWAssets/Levels/Scenes/InGame.unity
+    guid: 2c62f2a99ab443c43a3765db71eb462e
   m_configObjects: {}

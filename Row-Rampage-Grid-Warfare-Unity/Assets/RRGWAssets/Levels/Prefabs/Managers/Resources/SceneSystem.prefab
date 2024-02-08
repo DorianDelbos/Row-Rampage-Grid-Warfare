@@ -196,6 +196,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tips:
   - Line up 4 chips to win - easy, no?
+  - Think of it like chess, but with crisps. Just four in a row and you're the grand
+    master!
+  - If life gives you lemons, make lemonade. If life gives you chips, line 'em up
+    and conquer the world!
+  - If life gives you lemons, make lemonade. If life gives you chips, line 'em up
+    and conquer the world!
   tipsMesh: {fileID: 5348503727437842299}
   percantageMesh: {fileID: 6509828456681730586}
   loadingSlider: {fileID: 1057263485767723170}
@@ -556,7 +562,7 @@ Transform:
   m_GameObject: {fileID: 7284663972256506002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 875.65875, y: 356.7731, z: 214.2328}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -61,7 +61,7 @@ namespace Algorithm.MinMax
 
         public List<Board> children = new List<Board>();
         public int value;
-        public bool isMaxTurn = true;
+        public bool isPlayer1Turn = true;
 
         public bool IsColumnFull(int column)
         {
@@ -99,9 +99,9 @@ namespace Algorithm.MinMax
             switch (state)
             {
                 case State.P1:
-                    return 100;
-                case State.P2:
                     return -100;
+                case State.P2:
+                    return 100;
             }
 
             return 0;
@@ -170,34 +170,6 @@ namespace Algorithm.MinMax
             }
 
             return State.Empty;
-        }
-
-        public override string ToString()
-        {
-            string result = string.Empty;
-
-            for (int i = Rows - 1; i >= 0; i--)
-            {
-                for (int j = 0; j < Columns; j++)
-                {
-                    switch (this[i, j])
-                    {
-                        case State.Empty:
-                            result += "_";
-                            break;
-                        case State.P1:
-                            result += "X";
-                            break;
-                        case State.P2:
-                            result += "O";
-                            break;
-                    }
-                    result += " ";
-                }
-                result += "\n";
-            }
-
-            return result;
         }
     }
 }

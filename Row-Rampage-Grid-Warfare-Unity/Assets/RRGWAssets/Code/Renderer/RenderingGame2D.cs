@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public class RenderingGame2D : MonoBehaviour
 {
+    [SerializeField] private BoardManager boardManager;
     public Transform buttonList;
 
     private void Awake()
     {
-        GameManager.instance.OnDisplayUpdate += UpdateUI;
+        boardManager.OnDisplayUpdate += UpdateUI;
     }
 
     void UpdateUI(Board board)
@@ -25,10 +26,10 @@ public class RenderingGame2D : MonoBehaviour
                         image.color = Color.white;
                         break;
                     case Board.State.P1:
-                        image.color = Color.red;
+                        image.color = Color.blue;
                         break;
                     case Board.State.P2:
-                        image.color = Color.yellow;
+                        image.color = Color.red;
                         break;
                     default:
                         break;

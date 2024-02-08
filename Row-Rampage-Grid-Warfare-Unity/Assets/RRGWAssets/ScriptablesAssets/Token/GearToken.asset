@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2637c6e8f9c70847ba6a683f15faddd, type: 3}
+  m_Name: GearToken
+  m_EditorClassIdentifier: 
+  mesh: {fileID: -4250872300694115143, guid: 7673225822f2401448b6e07a7e7e9dc6, type: 3}
+  texture: {fileID: 2800000, guid: e2b28974b341e664ba745f07b5c194fb, type: 3}
