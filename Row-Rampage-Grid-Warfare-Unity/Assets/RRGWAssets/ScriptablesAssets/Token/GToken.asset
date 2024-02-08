@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2637c6e8f9c70847ba6a683f15faddd, type: 3}
-  m_Name: HoleToken
+  m_Name: GToken
   m_EditorClassIdentifier: 
-  mesh: {fileID: -6161525207405723263, guid: 483cc8df5c61a4c45b0ef0020eb14092, type: 3}
-  texture: {fileID: 2800000, guid: e8f66d83c5ee0394dad274e7ee0a5a1e, type: 3}
+  mesh: {fileID: 7982055318072862909, guid: 6fc21c1db76b8af4bb3063b8e48cb99b, type: 3}
+  texture: {fileID: 2800000, guid: ba3a2a826fdb5374fba77b3f6312def4, type: 3}

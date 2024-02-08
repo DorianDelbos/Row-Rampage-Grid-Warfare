@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SquareToken
   m_EditorClassIdentifier: 
   mesh: {fileID: 6596870000207690144, guid: 8d4f105924cdb4e4888b80ecdb2d3243, type: 3}
-  texture: {fileID: 2800000, guid: e2b28974b341e664ba745f07b5c194fb, type: 3}
+  texture: {fileID: 2800000, guid: 10d81365180ca194386678b6c36d36e6, type: 3}

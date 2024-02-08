@@ -1,4 +1,4 @@
-using Algorithm.MinMax;
+using Algorithm;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,11 +14,11 @@ public class RenderingGame2D : MonoBehaviour
 
     void UpdateUI(Board board)
     {
-        for (int i = 0; i < board.Rows; i++)
+        for (int i = 0; i < Board.ROWS; i++)
         {
-            for (int j = 0; j < board.Columns; j++)
+            for (int j = 0; j < Board.COLS; j++)
             {
-                Image image = buttonList.GetChild(i * board.Columns + j).GetComponent<Image>();
+                Image image = buttonList.GetChild(i * Board.COLS + j).GetComponent<Image>();
 
                 switch (board[i, j])
                 {

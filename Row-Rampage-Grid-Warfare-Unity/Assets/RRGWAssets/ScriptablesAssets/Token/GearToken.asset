@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GearToken
   m_EditorClassIdentifier: 
   mesh: {fileID: -4250872300694115143, guid: 7673225822f2401448b6e07a7e7e9dc6, type: 3}
-  texture: {fileID: 2800000, guid: e2b28974b341e664ba745f07b5c194fb, type: 3}
+  texture: {fileID: 2800000, guid: 3799272e02383604f997365bb08d1925, type: 3}

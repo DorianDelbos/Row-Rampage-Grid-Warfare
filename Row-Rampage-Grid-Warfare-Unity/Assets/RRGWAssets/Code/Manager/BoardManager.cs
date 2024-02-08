@@ -1,13 +1,10 @@
-using Algorithm.MinMax;
+using Algorithm;
 using System.Linq;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
     private Board root;
-
-    private int countNode = 1;
-    private int countLeaf = 0;
 
     private int maxDepth = 16;
 
@@ -25,18 +22,12 @@ public class BoardManager : MonoBehaviour
 
     public void GenerateBoardTree(Board board, int depth)
     {
-        if (depth <= 0)
+        if (depth <= 0 || board.IsAligned() != Board.State.Empty || board.IsBoardFull())
         {
             return;
         }
 
-        if (board.IsAligned() != Board.State.Empty || board.IsBoardFull())
-        {
-            countLeaf++;
-            return;
-        }
-
-        for (int j = 0; j < board.Columns; j++)
+        for (int j = 0; j < Board.COLS; j++)
         {
             if (!board.IsColumnFull(j))
             {
@@ -44,16 +35,9 @@ public class BoardManager : MonoBehaviour
                 newBoard.DropPiece(j, board.isPlayer1Turn ? Board.State.P2 : Board.State.P1);
                 newBoard.isPlayer1Turn = !board.isPlayer1Turn;
 
-                countNode++;
-
                 GenerateBoardTree(newBoard, --depth);
                 board.children.Add(newBoard);
             }
-        }
-
-        if (board.children.Count == 0) // Noeud Feuille
-        {
-            countLeaf++;
         }
     }
 
@@ -78,11 +62,10 @@ public class BoardManager : MonoBehaviour
         root.isPlayer1Turn = true;
         GenerateBoardTree(root, maxDepth);
 
-        int minMax = MinMax.FindBestMove(root, MinMax.depth, int.MinValue, int.MaxValue, true);
-        Debug.Log(minMax + " " + root.children.Count);
+        int minMax = MinMax.FindBestMove(root, int.MinValue, int.MaxValue, true);
         root = root.children
             .Where(x => x.value == minMax)
-            .OrderBy(_ => Random.Range(0, int.MaxValue))
+            //.OrderBy(_ => Random.Range(0, int.MaxValue))
             .First();
 
         OnDisplayUpdate?.Invoke(root);

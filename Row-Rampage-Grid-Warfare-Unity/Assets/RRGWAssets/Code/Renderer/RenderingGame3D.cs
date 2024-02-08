@@ -1,4 +1,4 @@
-using Algorithm.MinMax;
+using Algorithm;
 using UnityEngine;
 
 public class RenderingGame3D : MonoBehaviour
@@ -20,9 +20,9 @@ public class RenderingGame3D : MonoBehaviour
             Destroy(token.gameObject);
         }
 
-        for (int i = 0; i < board.Rows; i++)
+        for (int i = 0; i < Board.ROWS; i++)
         {
-            for (int j = 0; j < board.Columns; j++)
+            for (int j = 0; j < Board.COLS; j++)
             {
                 InstantiateToken(board[i, j], new Vector2(j, i));
             }
