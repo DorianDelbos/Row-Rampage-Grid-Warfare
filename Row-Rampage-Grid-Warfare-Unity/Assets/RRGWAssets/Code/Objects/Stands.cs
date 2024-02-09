@@ -1,14 +1,39 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Stands : MonoBehaviour
 {
+    [SerializeField] private Material[] rdmMaterials;
     [SerializeField] private Transform[] peoples;
     private Coroutine[] coroutines;
 
     private IEnumerator Start()
     {
         coroutines = new Coroutine[peoples.Length];
+
+        foreach (var person in peoples)
+        {
+            if (person == null)
+                continue;
+
+            if (Random.Range(0, 10) == 0)
+            {
+                DestroyImmediate(person.gameObject);
+                continue;
+            }
+
+
+            MeshRenderer renderer = person.GetComponent<MeshRenderer>();
+            if (renderer != null)
+                renderer.material = rdmMaterials[Random.Range(0, rdmMaterials.Length)];
+            else
+                Debug.LogWarning("MeshRenderer component not found on person: " + person.name);
+        }
+
+        peoples = peoples
+            .Where(x => x != null)
+            .ToArray();
 
         while (true)
         {
