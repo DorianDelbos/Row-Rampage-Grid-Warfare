@@ -6,7 +6,7 @@ public class BoardManager : MonoBehaviour
 {
     private Board root;
 
-    private int maxDepth = 16;
+    private int maxDepth = 8;
 
     public System.Action<Board> OnDisplayUpdate;
     public System.Action<Board.State> OnWin;
@@ -17,7 +17,7 @@ public class BoardManager : MonoBehaviour
 
         OnWin += state => { Debug.Log(state + " win !"); };
 
-        PlayAI();
+        //PlayAI();
     }
 
     public void GenerateBoardTree(Board board, int depth)
@@ -35,7 +35,7 @@ public class BoardManager : MonoBehaviour
                 newBoard.DropPiece(j, board.isPlayer1Turn ? Board.State.P2 : Board.State.P1);
                 newBoard.isPlayer1Turn = !board.isPlayer1Turn;
 
-                GenerateBoardTree(newBoard, --depth);
+                GenerateBoardTree(newBoard, depth - 1);
                 board.children.Add(newBoard);
             }
         }
@@ -47,12 +47,13 @@ public class BoardManager : MonoBehaviour
             return;
 
         root.DropPiece(column, root.isPlayer1Turn ? Board.State.P2 : Board.State.P1);
+        root.isPlayer1Turn = !root.isPlayer1Turn;
 
         OnDisplayUpdate?.Invoke(root);
         if (CheckWin())
             return;
 
-        PlayAI();
+        //PlayAI();
     }
 
     public void PlayAI()
