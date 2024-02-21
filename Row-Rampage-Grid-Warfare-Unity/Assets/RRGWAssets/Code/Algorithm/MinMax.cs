@@ -121,28 +121,36 @@ namespace Algorithm
 
             if (playerTokens == 4)
             {
-                score += 100;
+                score += 1000;
             }
-            else if (playerTokens == 3 && opponentTokens == 0)
+            if (opponentTokens == 3 && playerTokens == 1)
+            {
+                score += 500;
+            }
+            if (playerTokens == 3)
             {
                 score += 5;
             }
-            else if (playerTokens == 2 && opponentTokens == 0)
+            if (playerTokens == 2)
             {
-                score += 2;
+                score += 1;
             }
 
-            if (playerTokens == 4)
+            if (opponentTokens == 4)
             {
-                score -= 100;
+                score -= 1000;
             }
-            else if (opponentTokens == 3 && playerTokens == 0)
+            if (playerTokens == 3 && opponentTokens == 1)
+            {
+                score -= 500;
+            }
+            if (opponentTokens == 3)
             {
                 score -= 5;
             }
-            else if (opponentTokens == 2 && playerTokens == 0)
+            if (opponentTokens == 2)
             {
-                score -= 2;
+                score -= 1;
             }
 
             return score;

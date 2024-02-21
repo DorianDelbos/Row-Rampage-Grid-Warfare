@@ -6,7 +6,7 @@ public class BoardManager : MonoBehaviour
 {
     private Board root;
 
-    private int maxDepth = 8;
+    private int maxDepth = 4;
 
     public System.Action<Board> OnDisplayUpdate;
     public System.Action<Board.State> OnWin;
@@ -17,7 +17,7 @@ public class BoardManager : MonoBehaviour
 
         OnWin += state => { Debug.Log(state + " win !"); };
 
-        //PlayAI();
+        PlayAI();
     }
 
     public void GenerateBoardTree(Board board, int depth)
@@ -53,7 +53,7 @@ public class BoardManager : MonoBehaviour
         if (CheckWin())
             return;
 
-        //PlayAI();
+        PlayAI();
     }
 
     public void PlayAI()
