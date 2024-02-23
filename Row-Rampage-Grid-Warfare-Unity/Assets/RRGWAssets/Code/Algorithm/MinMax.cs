@@ -4,45 +4,66 @@ namespace Algorithm
 {
     public static class MinMax
     {
-        public static int FindBestMove(Board board, int alpha, int beta, bool maximazing)
+        public static int Minimax(Board node, int depth, int alpha, int beta, bool maximazing)
         {
-            if (board.children.Count == 0) // Noeud feuille
+            if (node.children.Count == 0 || depth == 0) // Noeud feuille
             {
-                board.value = Evaluate(board);
-                return board.value;
+                node.value = Evaluate(node);
+                return node.value;
             }
 
             if (maximazing) // Noeud MAX
             {
                 int maxValue = int.MinValue;
-                for (int i = 0; i < board.children.Count; i++)
+                for (int i = 0; i < node.children.Count; i++)
                 {
-                    int value = FindBestMove(board.children[i], alpha, beta, false);
+                    int value = Minimax(node.children[i], depth - 1, alpha, beta, false);
                     maxValue = Mathf.Max(maxValue, value);
                     alpha = Mathf.Max(alpha, value);
                     if (beta <= alpha)
                         break;
                 }
-                board.value = maxValue;
+                node.value = maxValue;
                 return maxValue;
             }
             else // Noeud MIN
             {
                 int minValue = int.MaxValue;
-                for (int i = 0; i < board.children.Count; i++)
+                for (int i = 0; i < node.children.Count; i++)
                 {
-                    int value = FindBestMove(board.children[i], alpha, beta, true);
+                    int value = Minimax(node.children[i], depth - 1, alpha, beta, true);
                     minValue = Mathf.Min(minValue, value);
                     beta = Mathf.Min(beta, value);
                     if (beta <= alpha)
                         break;
                 }
-                board.value = minValue;
+                node.value = minValue;
                 return minValue;
             }
         }
 
-        public static int Evaluate(Board board)
+        public static void GenerateBoardTree(ref Board node, int depth)
+        {
+            if (depth <= 0 || node.IsAligned() != Board.State.Empty || node.IsBoardFull())
+            {
+                return;
+            }
+
+            for (int j = 0; j < Board.COLS; j++)
+            {
+                if (!node.IsColumnFull(j))
+                {
+                    Board newBoard = new Board(node);
+                    newBoard.DropPiece(j, node.isPlayer1Turn ? Board.State.P2 : Board.State.P1);
+                    newBoard.isPlayer1Turn = !node.isPlayer1Turn;
+
+                    GenerateBoardTree(ref newBoard, depth - 1);
+                    node.children.Add(newBoard);
+                }
+            }
+        }
+
+        public static int Evaluate(Board node)
         {
             int score = 0;
 
@@ -53,7 +74,7 @@ namespace Algorithm
                     Board.State[] window = new Board.State[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        window[i] = board[row, col + i];
+                        window[i] = node[row, col + i];
                     }
                     score += EvaluateWindow(window);
                 }
@@ -66,7 +87,7 @@ namespace Algorithm
                     Board.State[] window = new Board.State[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        window[i] = board[row + i, col];
+                        window[i] = node[row + i, col];
                     }
                     score += EvaluateWindow(window);
                 }
@@ -79,7 +100,7 @@ namespace Algorithm
                     Board.State[] window = new Board.State[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        window[i] = board[row + i, col + i];
+                        window[i] = node[row + i, col + i];
                     }
                     score += EvaluateWindow(window);
                 }
@@ -92,7 +113,7 @@ namespace Algorithm
                     Board.State[] window = new Board.State[4];
                     for (int i = 0; i < 4; i++)
                     {
-                        window[i] = board[row + i, col - i];
+                        window[i] = node[row + i, col - i];
                     }
                     score += EvaluateWindow(window);
                 }
@@ -109,7 +130,7 @@ namespace Algorithm
 
             foreach (Board.State token in window)
             {
-                if (token == Board.State.P2)
+                if (token == GameManager.instance.playerTurn)
                 {
                     playerTokens++;
                 }

@@ -12,4 +12,5 @@ public class Player
     public string name;
     public bool isAI;
     public Token token;
+    public int difficulty;
 }

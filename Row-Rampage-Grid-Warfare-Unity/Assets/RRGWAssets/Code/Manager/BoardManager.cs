@@ -1,77 +1,116 @@
 using Algorithm;
+using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
     private Board root;
 
-    private int maxDepth = 4;
+    private bool gameStarted = false;
 
     public System.Action<Board> OnDisplayUpdate;
     public System.Action<Board.State> OnWin;
 
-    private void Start()
+    private Board.State playerTurn
     {
-        root = new Board();
-
-        OnWin += state => { Debug.Log(state + " win !"); };
-
-        PlayAI();
+        get => GameManager.instance.playerTurn;
+        set => GameManager.instance.playerTurn = value;
     }
 
-    public void GenerateBoardTree(Board board, int depth)
+    private bool player1IsAI => GameManager.instance.player1.isAI;
+    private bool player2IsAI => GameManager.instance.player2.isAI;
+
+    [SerializeField] private TMP_Text turnText;
+
+    public void GameStart()
     {
-        if (depth <= 0 || board.IsAligned() != Board.State.Empty || board.IsBoardFull())
-        {
-            return;
-        }
+        gameStarted = true;
+        root = new Board();
+        root.isPlayer1Turn = false;
+        UpdateTextTurn();
 
-        for (int j = 0; j < Board.COLS; j++)
-        {
-            if (!board.IsColumnFull(j))
-            {
-                Board newBoard = new Board(board);
-                newBoard.DropPiece(j, board.isPlayer1Turn ? Board.State.P2 : Board.State.P1);
-                newBoard.isPlayer1Turn = !board.isPlayer1Turn;
-
-                GenerateBoardTree(newBoard, depth - 1);
-                board.children.Add(newBoard);
-            }
-        }
+        if (player1IsAI)
+            StartCoroutine(PlayAI());
     }
 
     public void Play(int column)
     {
+        if (!gameStarted)
+            return;
+
+        if ((playerTurn == Board.State.P1 && player1IsAI) ||
+            (playerTurn == Board.State.P2 && player2IsAI))
+            return;
+
         if (root.IsColumnFull(column) || root.IsBoardFull())
             return;
 
-        root.DropPiece(column, root.isPlayer1Turn ? Board.State.P2 : Board.State.P1);
-        root.isPlayer1Turn = !root.isPlayer1Turn;
+        root.DropPiece(column, playerTurn);
+        AudioManager.instance.PlayAudio(GameAssets.instance.playMoveSound);
 
+        NextPlayer();
         OnDisplayUpdate?.Invoke(root);
-        if (CheckWin())
-            return;
 
-        PlayAI();
+        if (CheckWin())
+        {
+            // On Win
+            SceneSystem.instance.LoadScene("Winner");
+            return;
+        }
+
+        if ((playerTurn == Board.State.P1 && player1IsAI) ||
+            (playerTurn == Board.State.P2 && player2IsAI))
+        {
+            StartCoroutine(PlayAI());
+        }
     }
 
-    public void PlayAI()
+    public IEnumerator PlayAI()
     {
+        yield return new WaitForSeconds(1f);
+
         root.children.Clear();
 
-        root.isPlayer1Turn = true;
-        GenerateBoardTree(root, maxDepth);
-
-        int minMax = MinMax.FindBestMove(root, int.MinValue, int.MaxValue, true);
+        int depth = playerTurn == Board.State.P1 ? GameManager.instance.player1.difficulty : GameManager.instance.player2.difficulty;
+        MinMax.GenerateBoardTree(ref root, depth);
+        int minMax = MinMax.Minimax(root, depth, int.MinValue, int.MaxValue, true);
         root = root.children
             .Where(x => x.value == minMax)
             //.OrderBy(_ => Random.Range(0, int.MaxValue))
             .First();
 
+        AudioManager.instance.PlayAudio(GameAssets.instance.playMoveSound);
+        NextPlayer();
         OnDisplayUpdate?.Invoke(root);
+
         if (CheckWin())
-            return;
+        {
+            // On Win
+            SceneSystem.instance.LoadScene("Winner");
+        }
+        else if ((playerTurn == Board.State.P1 && player1IsAI) ||
+            (playerTurn == Board.State.P2 && player2IsAI))
+        {
+            StartCoroutine(PlayAI());
+        }
+    }
+
+    public void NextPlayer()
+    {
+        root.isPlayer1Turn = playerTurn == Board.State.P1;
+        playerTurn = playerTurn == Board.State.P1 ? Board.State.P2 : Board.State.P1;
+
+        UpdateTextTurn();
+    }
+
+    private void UpdateTextTurn()
+    {
+        if (playerTurn == Board.State.P1)
+            turnText.text = "<color=blue>" + GameManager.instance.player1.name + "</color>'s turn !";
+        else
+            turnText.text = "<color=red>" + GameManager.instance.player2.name + "</color>'s turn !";
     }
 
     private bool CheckWin()
@@ -80,7 +119,7 @@ public class BoardManager : MonoBehaviour
         if (root.IsBoardFull() || state != Board.State.Empty)
         {
             OnWin?.Invoke(state);
-
+            GameManager.instance.lastWinner = state;
             return true;
         }
         return false;

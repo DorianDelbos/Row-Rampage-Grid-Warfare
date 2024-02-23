@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/RRGWAssets/Levels/Scenes/UI/MainMenuCinematique.unity
+    guid: 2b52298e97e159b49a98de799828f425
+  - enabled: 1
     path: Assets/RRGWAssets/Levels/Scenes/UI/MainMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
@@ -14,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RRGWAssets/Levels/Scenes/InGame.unity
     guid: 2c62f2a99ab443c43a3765db71eb462e
+  - enabled: 1
+    path: Assets/RRGWAssets/Levels/Scenes/Winner.unity
+    guid: 4268a0c25cb99ee49a53016e27d8b859
   m_configObjects: {}

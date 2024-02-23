@@ -30,4 +30,10 @@ public class MainMenu : MenuHandler
 
         Application.Quit();
     }
+
+    public void PlayMusic()
+    {
+        AudioManager.instance.StopAllAudio();
+        AudioManager.instance.PlayAudio(GameAssets.instance.jamMusic);
+    }
 }

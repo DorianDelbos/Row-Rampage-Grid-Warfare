@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{bfb8515c-fea2-4705-8004-0f77c154218c}">
+		<property name="assetPath">
+			<value>Crowd Boo.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.8212244897959184</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{817b8fc6-7b30-4e03-a7eb-25ede70d7766}</destination>
+		</relationship>
+	</object>
+</objects>

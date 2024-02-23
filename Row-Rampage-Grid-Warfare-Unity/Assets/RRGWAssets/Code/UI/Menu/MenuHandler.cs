@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class MenuHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject[] panels;
+    [SerializeField] protected GameObject[] panels;
 
     public void CloseAllPanels()
     {

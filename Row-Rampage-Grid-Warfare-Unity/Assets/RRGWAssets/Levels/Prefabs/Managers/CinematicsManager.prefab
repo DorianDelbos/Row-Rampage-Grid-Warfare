@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3754580971202433309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2974152796957201854}
+  - component: {fileID: 7618720058186656533}
+  - component: {fileID: 7820450347537439139}
+  - component: {fileID: 2633266188366408034}
+  m_Layer: 0
+  m_Name: CinematicsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2974152796957201854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754580971202433309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7618720058186656533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754580971202433309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967b4ebcd3bd0fe439f14addd0ea9f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!320 &7820450347537439139
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754580971202433309}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: dc9c63b9723ada04daf046af017cefc7, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 0
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -6510304190848759743, guid: dc9c63b9723ada04daf046af017cefc7, type: 2}
+    value: {fileID: 2633266188366408034}
+  - key: {fileID: 221936608410575197, guid: dc9c63b9723ada04daf046af017cefc7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6964390196966167029, guid: dc9c63b9723ada04daf046af017cefc7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7504101133505513035, guid: dc9c63b9723ada04daf046af017cefc7, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References:
+    - 54e033acb3977b241ad4785fa0587ba7: {fileID: 3754580971202433309}
+    - 5cf3e627a6c85ee48844719f91d3735d: {fileID: 3754580971202433309}
+    - 679f2fd32b4325c49b27b17f621bd792: {fileID: 0}
+    - b8be9140f7cb7d047b8548b96fbd3cf4: {fileID: 0}
+--- !u!114 &2633266188366408034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754580971202433309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 71e1969837659f747b42b8f600ad1ffb, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7618720058186656533}
+          m_TargetAssemblyTypeName: CinematicsManager, Assembly-CSharp
+          m_MethodName: ActiveVirtualCamera
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: Cinemachine.CinemachineVirtualCamera,
+              Cinemachine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

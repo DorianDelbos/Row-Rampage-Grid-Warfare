@@ -50,3 +50,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fd22bb343fb56c4da9f89b58f61e154, type: 2}
   - {fileID: 11400000, guid: 02d51446236905340a14c15102f2bf0b, type: 2}
   - {fileID: 11400000, guid: bc524d054d711894a91a59d5dc36139c, type: 2}
+  playMoveSound:
+    Guid:
+      Data1: -183846046
+      Data2: 1200886603
+      Data3: -1639417979
+      Data4: 1685103136
+    Path: event:/InGame/PlayMove
+  jamMusic:
+    Guid:
+      Data1: -535955317
+      Data2: 1162098348
+      Data3: -1973060428
+      Data4: 354574425
+    Path: event:/Music/JamMusic

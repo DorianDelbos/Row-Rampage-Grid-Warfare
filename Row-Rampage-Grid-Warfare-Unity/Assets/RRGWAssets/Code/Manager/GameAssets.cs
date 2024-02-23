@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class GameAssets : MonoBehaviour
 {
-    private static GameAssets _i;
+    private static GameAssets _instance;
     public static GameAssets instance
     {
         get
         {
-            if (_i == null)
-                _i = Instantiate(Resources.Load("GameAssets") as GameObject).GetComponent<GameAssets>();
+            if (_instance == null)
+                _instance = Instantiate(Resources.Load("GameAssets") as GameObject).GetComponent<GameAssets>();
 
-            return _i;
+            return _instance;
         }
     }
 
     public Token[] tokens;
+
+    public FMODUnity.EventReference playMoveSound;
+    public FMODUnity.EventReference jamMusic;
 }

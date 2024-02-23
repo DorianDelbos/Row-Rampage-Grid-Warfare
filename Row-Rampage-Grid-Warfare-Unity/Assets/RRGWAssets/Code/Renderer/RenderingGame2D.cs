@@ -2,17 +2,17 @@ using Algorithm;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RenderingGame2D : MonoBehaviour
+public class RenderingGame2D : RenderingGame
 {
-    [SerializeField] private BoardManager boardManager;
     public Transform buttonList;
+    [SerializeField] private GameObject rendererSprite;
 
     private void Awake()
     {
-        boardManager.OnDisplayUpdate += UpdateUI;
+        boardManager.OnDisplayUpdate += UpdateRenderer;
     }
 
-    void UpdateUI(Board board)
+    public override void UpdateRenderer(Board board)
     {
         for (int i = 0; i < Board.ROWS; i++)
         {
@@ -23,7 +23,7 @@ public class RenderingGame2D : MonoBehaviour
         }
     }
 
-    private void InstantiateToken(Board.State state, Vector2Int position)
+    protected override void InstantiateToken(Board.State state, Vector2Int position)
     {
         RawImage image = buttonList.GetChild(position.x * Board.COLS + position.y).GetComponent<RawImage>();
 
@@ -37,5 +37,10 @@ public class RenderingGame2D : MonoBehaviour
             image.color = Color.red;
             image.texture = GameManager.instance.player2.token.texture;
         }
+    }
+
+    public void EnableRenderer()
+    {
+        rendererSprite.SetActive(!rendererSprite.activeSelf);
     }
 }

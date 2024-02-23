@@ -1,3 +1,4 @@
+using Algorithm;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,7 +20,8 @@ public class GameManager : MonoBehaviour
 
     public Player player1;
     public Player player2;
-    public bool turn = true;
+    public Board.State playerTurn = Board.State.P1;
+    public Board.State lastWinner;
 
     private void Awake()
     {
