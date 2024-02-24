@@ -8,3 +8,7 @@ Donc si par hasard, tu as des conseils ou un avis à donner, je suis preneur :)
 
 Les cinématiques sont skipable en appuyant sur la touche [ESPACE].
 [ECHAPE] pour faire pause en jeu.
+
+---------------------------------
+Trailer
+https://youtu.be/DILfFbd7oMQ
