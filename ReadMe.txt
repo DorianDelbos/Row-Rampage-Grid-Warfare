@@ -1,14 +1,13 @@
-Bonjour Seb,
-J'ai fait ce jeu avec l'intention qu'il soit peaufiné pour m'améliorer surtout dans les cinématiques, l'ui, et l'audio.
-Aussi, j'espère avoir rendu le tout amusant.
-Donc si par hasard, tu as des conseils ou un avis à donner, je suis preneur :)
+Row-Rampage-Grid-Warfare is a Power 4 game with Minimax algorithm. Also playable locally with 2 players.
 
 ---------------------------------
-à savoir
 
-Les cinématiques sont skipable en appuyant sur la touche [ESPACE].
-[ECHAPE] pour faire pause en jeu.
+Worth knowing
+
+The cinematics can be skipped by pressing the [SPACE] key.
+Press [ESCAPE] to pause the game.
 
 ---------------------------------
+
 Trailer
 https://youtu.be/DILfFbd7oMQ
