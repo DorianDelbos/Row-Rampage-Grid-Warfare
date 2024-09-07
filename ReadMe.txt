@@ -1,4 +1,5 @@
-Row-Rampage-Grid-Warfare is a Power 4 game with Minimax algorithm. Also playable locally with 2 players.
+Row-Rampage-Grid-Warfare is a Power 4 game with Minimax algorithm. Also playable locally with 2 players. 
+This game was made in 1 week, and all assets were handmade.
 
 ---------------------------------
 
